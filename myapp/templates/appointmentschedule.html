@@ -1,0 +1,54 @@
+{%load static%}
+          <!DOCTYPE html>
+          <html lang="en">
+          
+          <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+            <meta name="author" content="AdminKit">
+            <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+          
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link rel="shortcut icon" href="{%  static 'img/icons/icon-48x48.png'%}" />
+            <link href="{%  static 'css/app.css'%}" rel="stylesheet">
+          
+            <link rel="canonical" href="https://demo-basic.adminkit.io/ui-cards.html" />
+          
+            <title>Appointment Schedule</title>
+          
+            <link href="{%  static 'css/app.css'%}" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+          </head>
+<body>
+
+
+    <main class="content">
+        <div class="container-fluid p-0">
+            <div class="row">
+                {%if app_sch%}
+                <div class="col-12 col-lg-6">
+                    <div class="card mx-5">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Appointment Schedule</h5>
+                        </div>
+                        <div class="card-body">
+                            <input type="text" class="form-control"  name="name" placeholder="Name" value="{{app_sch.name}}" readonly>
+                            <input type="email" class="form-control mt-4" name="email" placeholder="Email" value="{{app_sch.email}}" readonly>
+                            <input type="text" class="form-control mt-4" name="department" placeholder="Department" value="{{app_sch.department}}" readonly>
+                            <input type="text" class="form-control mt-4" name="day" placeholder="Appointment Day" value="{{app_sch.appointment_day}}" readonly>
+                            <input type="text" class="form-control mt-4" name="time" placeholder="Appointment Time" value="{{app_sch.appointment_time}}" readonly>
+                            <input type="text" class="form-control mt-4" name="address" placeholder="Address"  value="{{app_sch.address}}" readonly>
+                        </div>
+
+                    </div>
+
+                </div>
+						{%endif%}
+            </div>
+        </div>
+
+    </main>
+
+</body>

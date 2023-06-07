@@ -1,0 +1,61 @@
+{%extends 'doctor/base.html'%}
+
+{%load static%}
+
+{%block title%} Appointment {%endblock title%}
+
+
+
+
+
+
+
+
+
+{%block content%}
+<main class="content">
+    <div class="container-fluid p-0">
+
+        <div class="mb-3">
+            <h1 class="h3 d-inline align-middle">Appointments</h1>
+            <a class="badge bg-dark text-white ms-2" href="#">
+                Patient contact for appointment
+            </a>
+        </div>
+        
+        <form action="{%url 'doctorsendappointmentpage' pk=request.session.id%}"method='POST'>
+            {%csrf_token%}
+        {%if appoi%}
+
+        <div class="row">
+            {%for i in appoi%}
+
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <!-- <img class="card-img-top" src="" alt="Unsplash"> -->
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Name : {{i.name}}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Email : {{i.email}}</p>
+                        <p class="card-text">Phone : {{i.contact}}</p>
+                            <!-- <p class="card-text">Phone : {{i.doctor}}</p> -->
+                        <p class="card-text">Department : {{i.department    }}</p>
+                        <p class="card-text">Message : {{i.message}}</p>
+  
+                    </div>
+                    <button class="btn btn-dark" type="submit">Send Appointment Schedule</button>
+                </div>
+            </div>
+            {%endfor%}
+
+        </div>
+        </form>
+        {%endif%}
+
+    </div>
+
+    </div>
+</main>
+
+{%endblock content%}
