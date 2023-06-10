@@ -272,7 +272,6 @@ def doctorprofileupdate(request,pk):
             doctor.save()
             url=f"/doctorprofilepage/{pk}"
             return redirect(url)    
-    # return render(request,'doctor/profile.html')          
 
 def checkdepartment(request):
     return render(request,'doctor/department.html')
