@@ -23,4 +23,5 @@ urlpatterns = [
     path('patientshowappointment/<int:pk>',views.patientshowappointment,name='patientshowappointment'),
     path('Patientcontact/<int:pk>',views.Patientcontact,name='Patientcontact'),
 
+
 ]

@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
 from.models import*
-from random import randint
+# from random import randint
 import re
+from django.conf import settings
 
 
 # Create your views here.
@@ -35,7 +36,7 @@ def register(request):
         role=request.POST['role']
         email=request.POST['email']
         contact=request.POST.get('contact')
-        pic=request.FILES.get('pic')
+        pic=request.FILES['pic']
         passw=request.POST.get('password')
         cpassw=request.POST.get('cpassword')
         user=MasterTable.objects.filter(email=email)
@@ -43,37 +44,53 @@ def register(request):
             message='you are already register'
             return render(request,'signup.html',{'msg':message})
         else:
+            # text regex
+
+            if re.match("^[A-Z a-z]*$",name):
+  
+
             # email regex
 
-            email_condition = "^[a-z]+[\._]?[a-z 0-9]+[@]\w+[.]\w{2,3}$"
-                    
-            if re.search (email_condition,email):
-
-                # Password regex
-
-                password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
-                
-                if re.match(password_pattern,passw):
-
-                    if passw==cpassw:
+                email_condition = "^[a-z]+[\._]?[a-z 0-9]+[@]\w+[.]\w{2,3}$"
+                        
+                if re.search (email_condition,email):
                     
 
-                        newuser=MasterTable.objects.create(email=email,password=passw,role=role)
-                        newpatient=Patient.objects.create(user_id=newuser,email=email,name=name,contact=contact,pic=pic)
-                        message='Register Successfully '
+                    # Password regex
 
-                        return render(request,'login.html',{'msg':message})
-
-
+                    password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
                     
+                    if re.match(password_pattern,passw):
+
+                            # Check password and conirm password is match
+                        if passw==cpassw:
+                            
+                            # Image validation
+
+                            extension = pic.name.split('.')[-1]
+                            if not extension or extension.lower() not in settings.WHITELISTED_IMAGE_TYPES.keys():
+                                message =  " Image Extension error"
+                                return render (request,'signup.html',{'msg':message})
+                            
+                            else:
+                                newuser=MasterTable.objects.create(email=email,password=passw,role=role)
+                                newpatient=Patient.objects.create(user_id=newuser,email=email,name=name,pic=pic)
+                                message='Register Successfully '
+
+                                return render(request,'login.html',{'msg':message})
+                            
+                        
+                        else:
+                            message =  "Password and Confirm Password does'nt Match"
+                            return render(request,'signup.html',{'msg':message})                                
                     else:
-                        message =  "Password and Confirm Password does'nt Match"
-                        return render(request,'signup.html',{'msg':message})                                
+                        message =  "Weak Password"
+                        return render(request,'signup.html',{'msg':message})            
                 else:
-                    message =  "Weak Password"
-                    return render(request,'signup.html',{'msg':message})            
+                    message ="Invalid Email"
+                    return render(request,'signup.html',{'msg':message})
             else:
-                message ="Invalid Email"
+                message ="Invalid Name"
                 return render(request,'signup.html',{'msg':message})
            
            # Doctor role
@@ -92,36 +109,55 @@ def register(request):
                 message='you are already register'
                 return render(request,'signup.html',{'msg':message})
             else:
-            # email regex
+            # text regex
 
-                email_condition = "^[a-z]+[\._]?[a-z 0-9]+[@]\w+[.]\w{2,3}$"
-                        
-                if re.search (email_condition,email):
-
-                    # Password regex
-
-                    password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+                if re.match("^[A-Z a-z]*$",name):
                     
-                    if re.match(password_pattern,passw):
 
-                        if passw==cpassw:
+
+                # email regex
+
+                    email_condition = "^[a-z]+[\._]?[a-z 0-9]+[@]\w+[.]\w{2,3}$"
                             
-                            newuser=MasterTable.objects.create(email=email,password=passw,role=role)
-                            newpatient=Doctor.objects.create(user_id=newuser,email=email,name=name,pic=pic)
-                            message='Register Successfully '
+                    if re.search (email_condition,email):
 
-                            return render(request,'login.html',{'msg':message})
+                        # Password regex
 
+                        password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
                         
+                        if re.match(password_pattern,passw):
+
+                            # Check password and conirm password is match
+                            if passw==cpassw:
+                            
+                            # Image validation
+
+                                extension = pic.name.split('.')[-1]
+                                if not extension or extension.lower() not in settings.WHITELISTED_IMAGE_TYPES.keys():
+                                    message =  " Image Extension error"
+                                    return render (request,'signup.html',{'msg':message})
+                            
+                                else:
+                                    newuser = MasterTable.objects.create(email=email,password=passw,role=role)
+                                    newdoctor = Doctor.objects.create(user_id=newuser,email=email,name=name,pic=pic)
+                                    message='Register Successfully '
+
+                                    return render(request,'login.html',{'msg':message})
+                            
+                        
+                            else:
+                                message =  "Password and Confirm Password does'nt Match"
+                                return render(request,'signup.html',{'msg':message})                                
                         else:
-                            message =  "Password and Confirm Password does'nt Match"
-                            return render(request,'signup.html',{'msg':message})                                
+                            message =  "Weak Password"
+                            return render(request,'signup.html',{'msg':message})            
                     else:
-                        message =  "Weak Password"
-                        return render(request,'signup.html',{'msg':message})            
+                        message ="Invalid Email"
+                        return render(request,'signup.html',{'msg':message})
                 else:
-                    message ="Invalid Email"
+                    message ="Invalid Name"
                     return render(request,'signup.html',{'msg':message})
+
 
         
     return render(request,'signup.html')
@@ -235,7 +271,8 @@ def doctorprofileupdate(request,pk):
             doctor.pic=request.FILES.get('pic')
             doctor.save()
             url=f"/doctorprofilepage/{pk}"
-            return redirect(url)              
+            return redirect(url)    
+    # return render(request,'doctor/profile.html')          
 
 def checkdepartment(request):
     return render(request,'doctor/department.html')
@@ -288,6 +325,7 @@ def doctorsendappointmentpage(request,pk):
         if user.role=='Doctor':
             doctor=Doctor.objects.get(user_id=user)
             return render(request,'doctor/ui-forms.html')
+
 def doctorsendappointment(request):
     user=MasterTable.objects.get(id=request.session['id'])
     if user:
@@ -346,3 +384,4 @@ def Patientcontact(request,pk):
             new_contact=PatientContact.objects.create(patient_id=patient,name=name,email=email,subject=subject,message=message)
             show_message='Your message sent...'
             return render(request,'index1.html',{'msg':show_message})
+

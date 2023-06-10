@@ -127,3 +127,13 @@ MEDIA_URL = '/media/'
 
 # Path where media is stored  
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  
+
+
+# Image Validation 
+
+WHITELISTED_IMAGE_TYPES = {
+    'jpeg': 'image/jpeg',
+    'jpg': 'image/jpeg',
+    'png': 'image/png'
+}
+UPLOAD_FILE_MAX_SIZE = 1048576  # bytes - approx 1 mb
