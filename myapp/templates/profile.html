@@ -3,155 +3,136 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title> Your Profile </title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+  <meta charset="utf-8">
+  <title> Your Profile </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-    <!-- Favicon -->
+  <!-- Favicon -->
 
-    <!-- Adding bootstarp -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
-        rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="{% static 'assests/css/ bootstrap.css' %}" rel="stylesheet" type="text/css">
-
-    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-<style>
-
-#pic{
-position: relative;
-left: 85%;
-bottom: 30px;
-border-radius: 400%;
-height: 150px;
-width: 150px;
+  <!-- Adding bootstarp -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
 
-}
-#icon{
-	position: relative;
-	height: 30px;
-	width: 100px;
-	left: 50%;
 
-}
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap"
+    rel="stylesheet">
 
-</style>  
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="{% static 'assests/css/ bootstrap.css' %}" rel="stylesheet" type="text/css">
+
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <style>
+    #pic {
+      position: relative;
+      left: 85%;
+      bottom: 30px;
+      border-radius: 400%;
+      height: 150px;
+      width: 150px;
+
+
+    }
+
+    #icon {
+      position: relative;
+      height: 80px;
+      width: 100px;
+      left: 88%;
+      bottom: 50px;
+
+    }
+  </style>
 </head>
 
 
 <body>
-<div class="container-xxl py-5">
-  <div class="container">
-    <h1 class="text-center mb-5 wow fadeInUp text-dark" data-wow-delay="0.1s">Your Profile</h1>
+  <div class="container-xxl py-5">
+    <div class="container">
+      <h1 class="text-center mb-5 wow fadeInUp text-dark" data-wow-delay="0.1s">Your Profile</h1>
 
-  </div>
-</div>
-<form class="row g-3" method="post" action="{% url 'patientprofileupdate' pk=request.session.id %}"
-  enctype="multipart/form-data">
-  {%csrf_token%}
-  <div class="container">
-  <div class="col-md-6">
-    <div class="col-md-12">
-      {%if pat.pic%}
-      <a href="{{MEDIA_URL}}{{pat.pic.url}}">
-        
-      <img src="{{MEDIA_URL}}{{pat.pic.url}}" class="img-responsive" id="pic"  name="pic" >
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-      class="bi bi-person-circle" viewBox="0 0 16 16"id='icon'>
-      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-      <path fill-rule="evenodd"
-        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-    
-      </svg>
-    
-
-    </a>
-    {%endif%}
-  </div>
     </div>
   </div>
-   <div class="col-md-6">
-    <label for="name" class="form-label" >Name</label>
-    <input type="text" class="form-control" id="name"  value="{{pat.name}}"
-      name="name" required>
-  </div>
-  
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4" name="email" value="{{user.email}}" name="email">
-  </div>
+  <form class="row g-3" method="post" action="{% url 'patientprofileupdate' pk=request.session.id %}"
+    enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="container">
+      <div class="col-md-6">
+        <div class="col-md-12">
+          {%if pat.pic%}
+          <a href="{{MEDIA_URL}}{{pat.pic.url}}">
 
-  <div class="col-md-6">
-    <label for="contact" class="form-label">Contact</label>
-    <input type="text" class="form-control" id="inputcontact" name="contact" value="{{pat.contact}}" required>
-  </div>
+            <img src="{{MEDIA_URL}}{{pat.pic.url}}" class="img-responsive" id="pic" name="pic">
+          </a>
+          {%endif%}
 
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">State</label>
-    <input type="text" class="form-control" id="inputPassword4" value="{{pat.state}}" name="state" required>
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputPassword4" value="{{pat.city}}" name="city"required>
-  </div>
-  <div class="col-md-6">
-    <label for="dob" class="form-label">Date of Birth</label>
-    <input type="text" class="form-control" id="dob" value="{{pat.dob}}" name="dob" required>
-  </div>
-  <div class="col-md-6">
-    <label for="blood group" class="form-label">Blood Group</label>
-    <input type="text" class="form-control" id="blood group" value="{{pat.bloodgroup}}" name="bloodgroup" required>
-  </div>
-  <div class="col-md-6">
-    <label for="gender" class="form-label">Gender</label>
-    <input type="text" class="form-control" id="gender" value="{{pat.gender}}" name="gender" required>
-  </div>
-  <div class="col-md-6">
-    <label for="pic" class="form-label">Profile Pic</label>
-    
-    <input type="file" class="form-control" id="profile"  name="pic" value="{{pat.pic}}">
-  </div>
+          {%if not pat.pic%}
+          <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-person-circle"
+            viewBox="0 0 16 16" id='icon'>
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
 
-  <!-- <div class="col-md-4">
-    <label for="inputState" class="form-label">State</label>
+          </svg>
+          {%endif%}
 
 
-    <input type="text" class="form-control" id="inputstate" name="state" value="{{can.state}}">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" value="{{pat.name}}" name="name" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" name="email" value="{{user.email}}" name="email">
+    </div>
+
+    <div class="col-md-6">
+      <label for="contact" class="form-label">Contact</label>
+      <input type="text" class="form-control" id="inputcontact" name="contact" value="{{pat.contact}}" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">State</label>
+      <input type="text" class="form-control" id="inputPassword4" value="{{pat.state}}" name="state" required>
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">City</label>
+      <input type="text" class="form-control" id="inputPassword4" value="{{pat.city}}" name="city" required>
+    </div>
+    <div class="col-md-6">
+      <label for="dob" class="form-label">Date of Birth</label>
+      <input type="text" class="form-control" id="dob" value="{{pat.dob}}" name="dob" required>
+    </div>
+    <div class="col-md-6">
+      <label for="blood group" class="form-label">Blood Group</label>
+      <input type="text" class="form-control" id="blood group" value="{{pat.bloodgroup}}" name="bloodgroup" required>
+    </div>
+    <div class="col-md-6">
+      <label for="gender" class="form-label">Gender</label>
+      <input type="text" class="form-control" id="gender" value="{{pat.gender}}" name="gender" required>
+    </div>
+    <div class="col-md-6">
+      <label for="pic" class="form-label">Profile Pic</label>
+
+      <input type="file" class="form-control" id="profile" name="pic" value="{{pat.pic}}">
+    </div>
 
 
-
-    <select id="inputState" class="form-select" name="state">
-      <option selected>Choose...</option>
-      <option>Uttar Pradesh</option>
-      <option>Delhi</option>
-      <option>Bihar</option>
-      <option>Andra Pradesh</option>
-      <option>Uttarakhand</option>
-      <option>Maharestra</option>
-
-    </select>
-
-  </div> -->
-
-
-  <div class="col-md-12">
-    <button type="submit" class="btn btn-primary mx-5">Update</button>
-  </div>
-</form>
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-primary mx-5">Update</button>
+    </div>
+  </form>
 </body>
-</html>
 
+</html>

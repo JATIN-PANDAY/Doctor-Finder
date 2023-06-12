@@ -42,11 +42,12 @@ width: 150px;
 
 }
 
-#icon{
-	position: relative;
-	height: 30px;
-	width: 100px;
-	left: 50%;
+#icon {
+  position: relative;
+  height: 80px;
+  width: 100px;
+  left: 88%;
+  bottom: 50px;
 
 }
 
@@ -63,26 +64,36 @@ width: 150px;
 </div>
 <form class="row g-3" method="post" action="{% url 'doctorprofileupdate' pk=request.session.id %}"
   enctype="multipart/form-data">
+  
   {%csrf_token%}
+
   <div class="container">
   <div class="col-md-6">
     <div class="col-md-12">
-		
-      
+
+      {%if doct.pic%}
+
 		<a href="{{MEDIA_URL}}{{doct.pic.url}}">
         
 			<img src="{{MEDIA_URL}}{{doct.pic.url}}" class="img-responsive" id="pic"  name="pic" >
-	  
+
+    </a>
+
+    {%endif%}
+
+    {%if not doct.pic%}
+    <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-person-circle"
+      viewBox="0 0 16 16" id='icon'>
+      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+      <path fill-rule="evenodd"
+        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+
+    </svg>
+    {%endif%}
 
 
-	<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-	class="bi bi-person-circle" viewBox="0 0 16 16"id='icon'>
-	<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-	<path fill-rule="evenodd"
-		d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
 
-	</svg>
-	</a>
+
 </div>
     </div>
   </div>
@@ -128,29 +139,9 @@ width: 150px;
     <input type="text" class="form-control" id="experience" value="{{doct.Experience}}" name="experience" required>
   </div>
   <div class="col-md-6">
-<label for="pic" class="form-label">Update your pic</label>
-  <input type="file" class="form-control" id="profile"  name="pic" value="{{doct.pic}}">
+<label for="pic" class="form-label">Update your picture</label>
+  <input type="file" class="form-control" id="profile"  name="pic" value="{{doct.pic}}" >
   </div>
-  <!-- <div class="col-md-4">
-    <label for="inputState" class="form-label">State</label>
-
-
-    <input type="text" class="form-control" id="inputstate" name="state" value="{{can.state}}">
-
-
-
-    <select id="inputState" class="form-select" name="state">
-      <option selected>Choose...</option>
-      <option>Uttar Pradesh</option>
-      <option>Delhi</option>
-      <option>Bihar</option>
-      <option>Andra Pradesh</option>
-      <option>Uttarakhand</option>
-      <option>Maharestra</option>
-
-    </select>
-
-  </div> -->
 
 
   <div class="col-md-12">

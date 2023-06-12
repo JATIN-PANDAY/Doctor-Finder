@@ -23,7 +23,6 @@ class Patient(models.Model):
     dob=models.CharField(max_length=20,null=True)
     pic=models.ImageField(upload_to='myapp/image/Patient')
     bloodgroup=models.CharField(max_length=30,null=True)
-    disease=models.CharField(max_length=100,null=True)
     gender=models.CharField(max_length=20,null=True)
     contact=models.CharField(max_length=20,null=True)
     def __str__(self):

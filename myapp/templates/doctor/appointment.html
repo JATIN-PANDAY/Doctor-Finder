@@ -4,14 +4,6 @@
 
 {%block title%} Appointment {%endblock title%}
 
-
-
-
-
-
-
-
-
 {%block content%}
 <main class="content">
     <div class="container-fluid p-0">
@@ -25,6 +17,14 @@
         
         <form action="{%url 'doctorsendappointmentpage' pk=request.session.id%}"method='POST'>
             {%csrf_token%}
+
+            {%if not appoi%}
+            <h2 class="text-danger">Not appointment request..</h2>
+            {%endif%}
+    
+
+
+
         {%if appoi%}
 
         <div class="row">
@@ -52,6 +52,7 @@
         </div>
         </form>
         {%endif%}
+
 
     </div>
 
