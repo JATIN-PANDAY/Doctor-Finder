@@ -3,7 +3,7 @@
 <html>
 
 <head>
-  <title> SignUp Form</title>
+  <title> SignUp </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script
@@ -21,7 +21,7 @@
 <body>
   <!-- main -->
   <div class="main-w3layouts wrapper" style="background-color: aliceblue;" >
-    <h1 style="color: #192732">Signup Form</h1>
+    <!-- <h1 style="color: #192732">Signup Form</h1> -->
     <h4 style="color:red">
       <center>{{msg}}</center>
     </h4>
@@ -35,19 +35,20 @@
             <label class="control-label col-sm-3">
               <p class="text-white">Select Role<span class="text-danger">*</span></p>
             </label>
-            <select class="form" name="role" required>
-              <option disabled Selected> Select user </option>
+          <center>
+             <select class="form" name="role" required>
+              <option disabled> Select user </option>
               <option required>Doctor</option>
               <option>Patient</option>
             </select>
-            </label>
+          </center>
           </div><br>
 
           <input class="text" type="text" name="name" placeholder="Name" required>
-          <input class="text mt-4" type="email" name="email" placeholder="Email" required>
-          <input class="text mt-4" type="password" name="password" placeholder="Password" required>
-          <input class="text w3lpass" type="password" name="cpassword" placeholder="Confirm Password" required>
-          <label for="formFile" class="form-label text-white">Your profile pic</label>
+          <input class="text mt-2" type="email" name="email" placeholder="Email" required>
+          <input class="text mt-3" type="password" name="password" placeholder="Password" required>
+          <input class="text w3lpass mt-4" type="password" name="cpassword" placeholder="Confirm Password" required>
+         <label for="formFile" class=" text-white">Your profile pic</label>
           <input class="form-control form-control-sm" type="file" name="pic" required>
 
 

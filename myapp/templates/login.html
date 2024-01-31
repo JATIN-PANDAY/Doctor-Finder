@@ -3,13 +3,12 @@
 <html>
 
 <head>
-  <title> Login Form</title>
+  <title> Login </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script
     type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
   <!-- //Custom Theme files -->
-  <!-- web font -->
   <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -21,7 +20,7 @@
 <body>
   <!-- main -->
   <div class="main-w3layouts wrapper" style="background-color: aliceblue;" >
-    <h1 style="color: #192732">Login Form</h1>
+    <!-- <h1 style="color: #192732">Login Form</h1> -->
     <h4 style="color:red">
       <center>{{msg}}</center>
     </h4>
@@ -34,17 +33,17 @@
           <div class="mx-auto max-w-xs md-12">
             <label class="control-label col-sm-3">
               <p class="text-white">Select Role<span class="text-danger">*</span></p>
-            </label>
-            <select class="form" name="role" required>
+            <center><select class="form mt-3" name="role" required>
               <option disabled Selected> Select user </option>
               <option required>Doctor</option>
               <option>Patient</option>
-            </select>
+            </select></center>
             </label>
           </div><br>
 
           <input class="text mt-4" type="email" name="email" placeholder="Email" required>
-          <input class="text mt-4" type="password" name="password" placeholder="Password" required>
+          <br>
+          <input class="text mt-5" type="password" name="password" placeholder="Password" required>
 
 
           <input class="btn btn-dark" type="submit"  value="LOGIN" style="background-color: #192732;">
